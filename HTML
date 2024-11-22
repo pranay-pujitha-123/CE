@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Presentation</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            height: 100vh;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .active {
+            display: block;
+        }
+
+        .title {
+            font-size: 3em;
+            margin-top: 20vh;
+        }
+
+        .content {
+            font-size: 1.5em;
+            margin-top: 2vh;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Title Slide -->
+    <div class="slide active">
+        <div class="title">Welcome to the HTML Presentation</div>
+        <div class="content">Press the right arrow key to continue</div>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="slide">
+        <div class="title">Slide 1 Title</div>
+        <div class="content">This is the content of slide 1.</div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+        <div class="title">Slide 2 Title</div>
+        <div class="content">This is the content of slide 2.</div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+        <div class="title">Slide 3 Title</div>
+        <div class="content">This is the content of slide 3.</div>
+    </div>
+
+    <!-- Navigation Instructions -->
+    <div class="navigation">Use the left and right arrow keys to navigate.</div>
+
+    <script>
+        // JavaScript for slide navigation
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        // Function to show slide based on index
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        // Event listener for arrow keys
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight') {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            } else if (event.key === 'ArrowLeft') {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            }
+        });
+    </script>
+</body>
+
+</html>
